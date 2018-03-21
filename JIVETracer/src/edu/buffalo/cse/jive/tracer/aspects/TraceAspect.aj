@@ -60,7 +60,14 @@ public aspect TraceAspect {
 				String value = Arrays.deepToString(joinPoint.getArgs());
 				traceModel.setFieldValue(value.substring(1, value.length() - 1));
 			} else {
-				traceModel.setFieldValue(joinPoint.getArgs()[0]);
+				if (joinPoint.getArgs()[0] instanceof Thread) {
+					Object object = joinPoint.getArgs()[0];
+					Thread thread = (Thread) joinPoint.getArgs()[0];
+					traceModel.setFieldValue(object.getClass().getCanonicalName() + "@" + thread.getId());
+				} else {
+
+					traceModel.setFieldValue(joinPoint.getArgs()[0]);
+				}
 			}
 		} else {
 			traceModel.setFieldValue("null");
@@ -88,11 +95,19 @@ public aspect TraceAspect {
 					String value = Arrays.deepToString(joinPoint.getArgs());
 					traceModel.setFieldValue(value.substring(1, value.length() - 1));
 				} else {
-					traceModel.setFieldValue(joinPoint.getArgs()[0]);
+					if (joinPoint.getArgs()[0] instanceof Thread) {
+						Object object = joinPoint.getArgs()[0];
+						Thread thread = (Thread) joinPoint.getArgs()[0];
+						traceModel.setFieldValue(object.getClass().getCanonicalName() + "@" + thread.getId());
+					} else {
+
+						traceModel.setFieldValue(joinPoint.getArgs()[0]);
+					}
 				}
 			} else {
 				traceModel.setFieldValue("null");
 			}
+
 			csvUtil.write(traceModel);
 		}
 	}

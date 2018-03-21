@@ -37,7 +37,7 @@ public class CSVUtil {
 			stringBuilder.append(traceModel.getFieldValue());
 			stringBuilder.append("\n");
 			fileWriter.write(stringBuilder.toString());
-			fileWriter.flush();
+//			fileWriter.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
