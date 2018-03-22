@@ -5,36 +5,58 @@ package edu.buffalo.cse.jive.tracer.model;
 
 /**
  * @author Shashank Raghunath
- * @email  sraghuna@buffalo.edu
+ * @email sraghuna@buffalo.edu
  *
  */
 public class TraceModel {
-	private Object objectReference;
-	private String fieldName;
-	private Object fieldValue;
+	private String threadName;
+	private String sequenceNumber;
+	private String source;
+	private String type;
+	private String details;
+	
 
-	public Object getObjectReference() {
-		return objectReference;
+	public TraceModel() {
 	}
 
-	public void setObjectReference(Object objectReference) {
-		this.objectReference = objectReference;
+	public String getThreadName() {
+		return threadName;
 	}
 
-	public String getFieldName() {
-		return fieldName;
+	public void setThreadName(String threadName) {
+		this.threadName = threadName;
 	}
 
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
+	public String getSequenceNumber() {
+		return sequenceNumber;
 	}
 
-	public Object getFieldValue() {
-		return fieldValue;
+	public void setSequenceNumber(String sequenceNumber) {
+		this.sequenceNumber = sequenceNumber;
 	}
 
-	public void setFieldValue(Object fieldValue) {
-		this.fieldValue = fieldValue;
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
 	}
 
 }

@@ -32,12 +32,13 @@ public class CSVUtil {
 	public void write(TraceModel traceModel) {
 		try {
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append(traceModel.getObjectReference()).append(',');
-			stringBuilder.append(traceModel.getFieldName()).append(',');
-			stringBuilder.append(traceModel.getFieldValue());
+			stringBuilder.append("\"" + traceModel.getThreadName() + "\"").append(',');
+			stringBuilder.append("\"" + traceModel.getSequenceNumber() + "\"").append(',');
+			stringBuilder.append("\"" + traceModel.getSource() + "\"").append(',');
+			stringBuilder.append("\"" + traceModel.getType() + "\"").append(',');
+			stringBuilder.append("\"" + traceModel.getDetails() + "\"");
 			stringBuilder.append("\n");
 			fileWriter.write(stringBuilder.toString());
-//			fileWriter.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
