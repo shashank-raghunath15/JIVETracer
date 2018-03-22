@@ -46,7 +46,6 @@ public aspect TraceAspect {
 	@Before("trace()")
 	public void trace(JoinPoint joinPoint) {
 		if (joinPoint.getThis().getClass().getAnnotation(TraceAll.class) == null) {
-			System.out.println("This should not have run");
 			sequence = sequence.add(BigInteger.ONE);
 			try {
 				csvUtil.write(BuildTraceModel.buildFieldWriteTraceModel(joinPoint, sequence.toString()));
