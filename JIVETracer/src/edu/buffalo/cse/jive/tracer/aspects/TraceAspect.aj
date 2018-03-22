@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
+import edu.buffalo.cse.jive.tracer.annotations.TraceAll;
 import edu.buffalo.cse.jive.tracer.shutdownHook.CleanUpHook;
 import edu.buffalo.cse.jive.tracer.util.BuildTraceModel;
 import edu.buffalo.cse.jive.tracer.util.CSVUtil;
@@ -44,11 +45,14 @@ public aspect TraceAspect {
 
 	@Before("trace()")
 	public void trace(JoinPoint joinPoint) {
-		sequence = sequence.add(BigInteger.ONE);
-		try {
-			csvUtil.write(BuildTraceModel.buildFieldWriteTraceModel(joinPoint, sequence.toString()));
-		} catch (IOException e) {
-			System.exit(0);
+		if (joinPoint.getThis().getClass().getAnnotation(TraceAll.class) == null) {
+			System.out.println("This should not have run");
+			sequence = sequence.add(BigInteger.ONE);
+			try {
+				csvUtil.write(BuildTraceModel.buildFieldWriteTraceModel(joinPoint, sequence.toString()));
+			} catch (IOException e) {
+				System.exit(0);
+			}
 		}
 	}
 
