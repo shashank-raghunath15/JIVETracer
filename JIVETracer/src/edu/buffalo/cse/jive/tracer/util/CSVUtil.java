@@ -47,6 +47,9 @@ public class CSVUtil {
 
 	@Override
 	protected void finalize() throws Throwable {
+		fileWriter.flush();
 		fileWriter.close();
 	}
+	
+	
 }

@@ -16,4 +16,8 @@ public class SerialUtil {
 			return sequence;
 		}
 	}
+
+	public static boolean contains(String key) {
+		return map.containsKey(key);
+	}
 }
