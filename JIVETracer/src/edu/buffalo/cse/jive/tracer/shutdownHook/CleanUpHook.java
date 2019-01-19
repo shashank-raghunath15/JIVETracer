@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import edu.buffalo.cse.jive.tracer.util.FileWriterUtility;
-
 public class CleanUpHook extends Thread {
 
 	private static final String BASE_DIR = System.getProperty("user.dir");
@@ -26,7 +24,6 @@ public class CleanUpHook extends Thread {
 		File traceDirectory = new File(TRACE_DIR);
 		for (File file : csvFiles) {
 			try {
-				FileWriterUtility.getFileWriter().close();
 				if (traceDirectory.exists()) {
 					moveFile(file, TRACE_DIR);
 				} else {

@@ -61,4 +61,22 @@ public class BuildTraceModel {
 	public static TraceModel buildVariableWriteTraceModel(JoinPoint joinPoint) {
 		return null;
 	}
+
+	public static String toString(TraceModel traceModel) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\"" + traceModel.getThreadName() + "\"").append(',');
+		stringBuilder.append("\"" + traceModel.getSequenceNumber() + "\"").append(',');
+		stringBuilder.append("\"" + traceModel.getSource() + "\"").append(',');
+		stringBuilder.append("\"" + traceModel.getType() + "\"").append(',');
+		stringBuilder.append("\"" + traceModel.getDetails() + "\"");
+		stringBuilder.append("\n");
+		return stringBuilder.toString();
+	}
+	
+	public static String minToString(TraceModel traceModel) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\"" + traceModel.getDetails() + "\"");
+		stringBuilder.append("\n");
+		return stringBuilder.toString();
+	}
 }
