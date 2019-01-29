@@ -1,18 +1,19 @@
 package edu.buffalo.cse.jive.tracer.util;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public abstract class FileWriterUtil {
 
 	private FileWriter fileWriter;
-	private String fileName;
+	private File file;
 
 	public FileWriterUtil(String fileName) {
 		super();
-		this.fileName = fileName;
 		try {
-			this.fileWriter = new FileWriter(this.fileName);
+			this.file = new File(fileName);
+			this.fileWriter = new FileWriter(this.file);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -20,7 +21,6 @@ public abstract class FileWriterUtil {
 
 	@Override
 	protected void finalize() throws Throwable {
-		super.finalize();
 		fileWriter.close();
 	}
 
@@ -31,14 +31,4 @@ public abstract class FileWriterUtil {
 	public void setFileWriter(FileWriter fileWriter) {
 		this.fileWriter = fileWriter;
 	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-	
-	
 }

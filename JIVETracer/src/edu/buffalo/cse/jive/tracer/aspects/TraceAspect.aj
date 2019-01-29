@@ -15,8 +15,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 import edu.buffalo.cse.jive.tracer.annotations.TraceAll;
-import edu.buffalo.cse.jive.tracer.shutdownHook.CleanUpHook;
 import edu.buffalo.cse.jive.tracer.util.BuildTraceModel;
+import edu.buffalo.cse.jive.tracer.util.CSVFileWriterUtil;
 import edu.buffalo.cse.jive.tracer.util.SocketWriterUtil;
 import edu.buffalo.cse.jive.tracer.util.WriterUtil;
 
@@ -32,7 +32,6 @@ public aspect TraceAspect {
 	private WriterUtil writerUtil;
 
 	public TraceAspect() {
-		Runtime.getRuntime().addShutdownHook(new CleanUpHook());
 		writerUtil = new SocketWriterUtil("localhost", 5000);
 	}
 
@@ -70,7 +69,11 @@ public aspect TraceAspect {
 
 	public String buildFileName() {
 		StringBuilder fileName = new StringBuilder();
-		fileName.append(System.getProperty("user.dir")).append(File.separator);
+		File traceDir = new File(System.getProperty("user.dir") + File.separator + "traces");
+		if (!traceDir.exists()) {
+			traceDir.mkdirs();
+		}
+		fileName.append(traceDir.getAbsolutePath()).append(File.separator);
 		StackTraceElement trace[] = Thread.currentThread().getStackTrace();
 		if (trace.length > 0) {
 			fileName.append(trace[trace.length - 1].getClassName());

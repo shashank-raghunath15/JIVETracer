@@ -20,5 +20,6 @@ public class CSVFileWriterUtil extends FileWriterUtil implements WriterUtil {
 
 	public void write(TraceModel traceModel) throws IOException {
 		getFileWriter().write(BuildTraceModel.toString(traceModel));
+		getFileWriter().flush();
 	}
 }
